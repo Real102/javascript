@@ -1,4 +1,4 @@
-# 创建对象的8种方式及其优缺点
+# 创建对象的8种方式
 
 new Object()
 ---
@@ -68,15 +68,47 @@ var person2 = new Person('core', 27, 'Back-end Development Engineer');
 4. 返回新对象
 
 
-使用构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍，就比如 person1 和 person2 都有一个名为 sayName() 的方法，但两个方法不是同一个 function 实例 
+使用构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍，就比如 person1 和 person2 都有一个名为 sayName() 的方法，但两个方法不是同一个 function 实例：
 ```
 this.sayName() = new Function(alert(this.name));    //先声明函数在逻辑上是等价的
 ```
-以这种方式创建函数，会导致不同的作用域链和标识符解析，但创建 Function 新实例的机制仍是相同的。因此，不同实例上的同名函数是不相等的。
+以这种方式创建函数，会导致不同的作用域链和标识符解析，但创建 Function 新实例的机制仍是相同的。因此，不同实例上的同名函数是不相等的：
 ```
 alert(person1.sayName == person2.sayName);  // false
 ```
 
+原型模式
+---
+我们创建的每一个函数都有一个 prototype （原型）属性，这个属性是一个指针，指向一个对象，而这个对象包含可以由特定类型的所有实例共享的属性和方法
 
+```javascript
+function Person() {
+}
+//第一种写法
+Person.prototype.name = 'John';
+Person.prototype.age = 25;
+Person.prototype.job = 'Front-end Development Engineer';
+Person.prototype.sayName = function() {
+    alert(this.name);
+}
+var person1 = new Person();
+person1.sayName();      // 'John'
+var person2 = new Person();
+person2.sayName();      // 'John'
+alert(person1.sayName == person2.sayName);      // true
 
+//第二种写法：
+Person.prototype = {
+    constructor: Person,//以对象字面量形式创建对象时，需要加上 constructor，否则 constructor 不指向 Person
+    name: 'John',
+    age: 25,
+    job: 'Front-end Development Engineer',
+    sayName: function() {
+        alert(this.name);
+    }
+}
+```
 
+在此，我们将 sayName() 方法和所有属性直接添加到 Person 的 prototype 属性中，创建的新对象会具有相同的属性和方法。但与构造函数模式不同的是，新对象的这些属性和方法是由所有实例共享的。
+
+原型模式省略了为构造函数传递初始化参数这一环节，结果所有实例在默认情况下都取得相同的属性值
