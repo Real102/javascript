@@ -69,9 +69,13 @@ var person2 = new Person('core', 27, 'Back-end Development Engineer');
 
 
 使用构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍，就比如 person1 和 person2 都有一个名为 sayName() 的方法，但两个方法不是同一个 function 实例 
-    this.sayName() = new Function(alert(this.name));    //先声明函数在逻辑上是等价的
+```
+this.sayName() = new Function(alert(this.name));    //先声明函数在逻辑上是等价的
+```
 以这种方式创建函数，会导致不同的作用域链和标识符解析，但创建 Function 新实例的机制仍是相同的。因此，不同实例上的同名函数是不相等的。
-    alert(person1.sayName == person2.sayName);  // false
+```
+alert(person1.sayName == person2.sayName);  // false
+```
 
 
 
