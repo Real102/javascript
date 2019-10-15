@@ -8,7 +8,7 @@ new Object()
     var obj = new Object();
     //等同于 var obj = {}
 ```
-使用字面量的方式更加简单，优点是 ___足够简单___ ，缺点是 ___每个对象都是独立的___
+使用字面量的方式更加简单，优点是 __足够简单__ ，缺点是 __每个对象都是独立的__
 
 
 工厂模式
@@ -33,7 +33,7 @@ var person2 = createPerson('core', 27, 'Back-end Development Engineer');
 函数 createPerson() 能够根据接收的参数来创建一个包含所有必要信息的 Person 对象  
 可以无数次调用这个函数，每次都会返回一个包含三个属性一个方法的对象。
 
-工厂模式虽然解决了 ___多个相似对象___ 的问题，但却没有解决 ___对象识别___ 的问题，即如何知道一个对象的类型
+工厂模式虽然解决了 __多个相似对象__ 的问题，但却没有解决 __对象识别__ 的问题，即如何知道一个对象的类型
 
 
 构造函数模式
@@ -69,11 +69,11 @@ var person2 = new Person('core', 27, 'Back-end Development Engineer');
 
 
 使用构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍，就比如 person1 和 person2 都有一个名为 sayName() 的方法，但两个方法不是同一个 function 实例：
-```
+```javascript
 this.sayName() = new Function(alert(this.name));    //先声明函数在逻辑上是等价的
 ```
 以这种方式创建函数，会导致不同的作用域链和标识符解析，但创建 Function 新实例的机制仍是相同的。因此，不同实例上的同名函数是不相等的：
-```
+```javascript
 alert(person1.sayName == person2.sayName);  // false
 ```
 
