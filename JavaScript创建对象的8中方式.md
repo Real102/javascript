@@ -60,6 +60,7 @@ var person2 = new Person('core', 27, 'Back-end Development Engineer');
 2. 直接将属性和方法赋给了 ___this___ 对象
 3. 没有 ___return___ 语句
 
+
 要创建 Person 的新实例，必须使用 new 操作符。用 new 调用构造函数实际上会经历以下四个步骤：
 1. 创建一个新对象
 2. 将构造函数的作用于赋给新对象（因此 ___this___ 就指向了这个新对象）
@@ -67,6 +68,7 @@ var person2 = new Person('core', 27, 'Back-end Development Engineer');
 4. 返回新对象
 
 
+使用构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍，就比如 person1 和 person2 都有一个名为 sayName() 的方法，但两个方法不是同一个 function 实例 (__this.sayName() = new Function(alert(this.name));  //先声明函数在逻辑上是等价的__)，以这种方式创建函数，会导致不同的作用域链和标识符解析，但创建 Function 新实例的机制仍是相同的。因此，不同实例上的同名函数是不相等的。（__alert(person1.sayName == person2.sayName);  // false__）
 
 
 
