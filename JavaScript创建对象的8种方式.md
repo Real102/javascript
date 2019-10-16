@@ -223,6 +223,8 @@ friend.sayName();           // 'John'
 与寄生构造函数模式类似，使用稳妥构造函数模式创建的对象与构造函数之间也没有什么关系，因此 instanceof 操作符对这种对象也没有什么意义
 
 
+------
+
 Object.create()
 ---
 ```javascript
@@ -238,4 +240,4 @@ me.isHuman = true;              // inherited properties can be overwritten
 me.printIntroduction();         // "My name is core. Am I human? true"
 ```
 
-Object.create() 方法创建爱你一个新对象，并使用现有的对象来提供新创建的对象的 \_\_proto\_\_
+Object.create() 方法创建一个新对象，并使用现有的对象来提供新创建的对象的 \_\_proto\_\_
