@@ -124,7 +124,7 @@ function Person(name, age, job) {
     this.name = name;
     this.age = age;
     this.job = job;
-    this.friends: ['chery', 'kit']
+    this.friends = ['chery', 'kit']
 }
 
 Person.prototype = {
