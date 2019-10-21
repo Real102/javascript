@@ -1,4 +1,4 @@
 # javascript
 
 
-记录并学习
+记录并学习 JavaScript
