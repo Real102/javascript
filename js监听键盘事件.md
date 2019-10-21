@@ -6,11 +6,11 @@ window.onkeydown = funtion(event) {
 
     // 关键是利用 keyCode 判断用户按了什么按键
 
-    if(e.keyCode === 13) { // 单纯监听按键不绑定任何事件
+    if(e.keyCode === 13) {                      // 单纯监听按键不绑定任何事件
         console.log("按下 enter 键");
     }
-    if(e.keyCode === 116) { // 监听按钮并绑定事件
-        e.preventDefault(); // 阻止系统默认事件；或者用 return false;
+    if(e.keyCode === 116) {                     // 监听按钮并绑定事件
+        e.preventDefault();                     // 阻止系统默认事件；或者用 return false;
         todoSomething();
         console.log("按下 F5 键");
     }
@@ -19,6 +19,7 @@ window.onkeydown = funtion(event) {
     }
 }
 ```
+---
 
 附 keyCode 参照表
 
