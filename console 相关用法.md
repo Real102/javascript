@@ -1,6 +1,7 @@
 # console的多种用法
 
-### console.log
+console.log
+---
 
 console.log 一般都是直接输出到控制台，但这里做了一下修改，输出到 html 页面：
 
@@ -20,9 +21,10 @@ console.log 一般都是直接输出到控制台，但这里做了一下修改�
 console.log('666')
 ```
 
-### console.table
+console.table
+---
 
 将数据以表格的形式打印出来，这个方法需要提供 data，并且这个 data 必须是数组或对象
 
-![输出为数组](/img/console.table.array "输出为数组的截图")
-![输出为对象](/img/console.table.array "输出为对象的截图")
+![输出为数组](/img/console.table.array.png "输出为数组的截图")
+![输出为对象](/img/console.table.array.png "输出为对象的截图")
