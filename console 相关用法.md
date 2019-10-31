@@ -28,3 +28,20 @@ console.table
 
 ![输出为数组](/img/consoleTableArray.png "输出为数组的截图")
 ![输出为对象](/img/consoleTableObject.png "输出为对象的截图")
+
+console.time & console.timeEnd
+---
+
+调用 console.time 启动一个计时器（timer）来跟踪某一个操作的占用时长，每一个计时器的名字都必须是唯一的，调用 console.timeEnd 时，浏览器将以毫秒为单位，输出对应计时器所经过的时间
+
+```
+console.time("answer time");
+alert("Click to continue");
+console.timeLog("answer time");
+alert("Do a bunch of other stuff...");
+console.timeEnd("answer time");
+// answer time: timer started
+// answer time: 1242ms
+// answer time: 8858ms
+// 谷歌(opera)和firefox显示稍有不同，IE不支持 timeLog
+```
