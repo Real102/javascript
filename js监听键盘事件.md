@@ -19,6 +19,7 @@ window.onkeydown = funtion(event) {
     }
 }
 ```
+
 ---
 
 附 keyCode 参照表

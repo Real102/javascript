@@ -1,7 +1,7 @@
-## 各种文件的mine类型
+# 各种文件的mine类型
 
 ```json
-{ 
+{
     ".323":"text/h323" ,
     ".3gp":"video/3gpp" ,
     ".aab":"application/x-authoware-bin" ,
@@ -485,5 +485,4 @@
     ".zip":"application/zip" ,
     ".json":"application/json"
 }
-
 ```

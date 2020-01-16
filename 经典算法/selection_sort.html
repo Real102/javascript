@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>选择排序</title>
+		<style>
+            h2{
+                margin-left: 30px;
+            }
+            .selectionSort{
+                margin: 30px;
+            }
+			.selectionSort span {
+				display: block;
+				line-height: 25px;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>选择排序</h2>
+		<span style="margin-left: 30px;line-height: 25px;">时间复杂度：O(n²)；空间复杂度：O(n²)</span>
+		<span style="margin-left: 30px;display: block;">大概思路是找到最小的放在第一位，找到第二小的放在第二位</span style="margin-left: 30px;">
+		<div class="selectionSort"></div>
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+			window.onload = () => {
+				function selectionSort(arr) {
+                    let html = '';
+                    for(let i = 0; i < arr.length; i++) {
+                        let min = i;
+                        for(let j = i + 1; j < arr.length; j++) {
+                            if(arr[min] > arr[j]) {
+                                min = j;
+                            }
+                        }
+                        [arr[i], arr[min]] = [arr[min], arr[i]];
+                        html += `<span>第${i+1}次：${arr}</span>`
+                    }
+                    $('.selectionSort').empty().append(html);
+                    return arr;
+				}
+				selectionSort([65, 11, 42, 92, 23, 71, 52, 47, 49, 86, 56, 73, 85])
+			};
+		</script>
+	</body>
+</html>

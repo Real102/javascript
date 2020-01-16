@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>插入排序</title>
+		<style>
+            h2{
+                margin-left: 30px;
+            }
+            .insertionSort{
+                margin: 30px;
+            }
+			.insertionSort span {
+				display: block;
+				line-height: 25px;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>插入排序</h2>
+		<span style="margin-left: 30px;line-height: 25px;">时间复杂度：O(n²)；空间复杂度：O(1)</span>
+		<span style="margin-left: 30px;display: block;">从第一个默认被排好序的元素开始，取出下一个元素，在已经排序的元素序列中从后向前扫描，如果已排序的元素大于取出的元素，则将其分别向后移动一位，直到找到已排序的元素中小于或等于取出的元素，将取出的元素放到它的后一位</span style="margin-left: 30px;">
+		<div class="insertionSort"></div>
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+			window.onload = () => {
+				function insertionSort(arr) {
+                    var html = '';
+                    for(let i = 1; i < arr.length; i++) {
+                        let j = i - 1;
+                        let key = arr[i];           // 存储当前项
+                        while(arr[j] > key) {       // 比较大小，
+                            arr[j + 1] = arr[j]     // 替换位置
+                            j--;
+                        }
+                        arr[j + 1] = key;     // 替换位置
+                        html += `<span>第${i}次：${arr}</span>`;
+                    }
+                    $('.insertionSort').empty().append(html);
+                    return arr;
+				}
+				console.log(insertionSort([65, 11, 42, 92, 23, 71, 52, 47, 49, 86, 56, 73, 85]))
+			};
+		</script>
+	</body>
+</html>
