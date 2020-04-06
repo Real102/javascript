@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>事件委托</title>
+	</head>
+	<body>
+		<h4 style="text-align: center;">事件委托 && 闭包</h4>
+		<hr style="margin-bottom: 60px;" />
+		<div style="display: flex; justify-content: center;">
+			<ul id="oull" style="text-align: center; margin-right: 50px;">
+				<span style="line-height: 40px;">事件委托方式，点击返回下标</span>
+				<li>点击第一个</li>
+				<li>点击第二个</li>
+				<li>点击第三个</li>
+				<li>点击第四个</li>
+				<li>点击第五个</li>
+			</ul>
+			<ul id="oulr" style="text-align: center;">
+				<span style="line-height: 40px;">闭包方式，点击返回下标</span>
+				<li>点击第一个</li>
+				<li>点击第二个</li>
+				<li>点击第三个</li>
+				<li>点击第四个</li>
+				<li>点击第五个</li>
+			</ul>
+		</div>
+		<script>
+			window.onload = function () {
+				let oull = document.getElementById('oull')
+				oull.onclick = function (e) {
+					var e = e || window.event
+					var target = e.target || e.srcElement
+					if (target.tagName.toUpperCase() == 'LI') {
+						let list = oull.getElementsByTagName('li')
+						let aim = target
+						let index = Array.prototype.indexOf.call(list, aim)
+						alert('下标是：' + index)
+					}
+				}
+
+				let oulr = document.getElementById('oulr')
+				let oli = oulr.getElementsByTagName('li')
+				let len = oli.length
+				for (var i = 0; i < len; i++) {
+					;(function (i) {
+						oli[i].onclick = function () {
+							console.log(i)
+						}
+					})(i)
+				}
+			}
+		</script>
+	</body>
+</html>

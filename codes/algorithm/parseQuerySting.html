@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>URL参数解析</title>
+	</head>
+	<body>
+		<div style="margin-top: 200px;">
+			<h4 style="text-align: center;">URL参数解析：http://www.taobao.com/index.php?key0=0&key1=1&key2=2</h4>
+			<hr style="margin-bottom: 60px;" />
+		</div>
+		<script>
+			window.onload = function () {
+				let obj = this.parseQuerySting('http://www.taobao.com/index.php?key0=0&key1=1&key2=2')
+				console.log(obj.key1)
+			}
+			function parseQuerySting(url) {
+				let obj = {}
+				let hashArr = url.split('?').pop().split('&')
+				hashArr.forEach((item) => {
+					let arr = item.split('=')
+					obj[arr[0]] = arr[1]
+				})
+				return obj
+			}
+		</script>
+	</body>
+</html>
