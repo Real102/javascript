@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>AES加解密</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body,
+			html {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+                font-family: 'Cambria', 'Cochin', Georgia, Times, 'Times New Roman', serif;
+			}
+			.attr {
+				width: 1200px;
+				margin: 100px auto 50px auto;
+				text-align: center;
+				font-size: 14px;
+			}
+			.attr label {
+				font-size: 14px;
+				line-height: 25px;
+			}
+			.attr input {
+				font-size: 14px;
+				border: 1px solid #999;
+				line-height: 25px;
+				border-radius: 3px;
+                text-indent: 10px;
+                font-family: 'Cambria', 'Cochin', Georgia, Times, 'Times New Roman', serif;
+			}
+			.main {
+				width: 1200px;
+				height: 300px;
+				margin: 0 auto;
+				display: flex;
+				display: -webkit-flex;
+				justify-content: space-around;
+				align-items: center;
+			}
+			.main textarea {
+				resize: none;
+				width: 500px;
+				height: 300px;
+				text-indent: 20px;
+				line-height: 20px;
+				font-size: 14px;
+				color: #333;
+                padding-top: 5px;
+                font-family: 'Cambria', 'Cochin', Georgia, Times, 'Times New Roman', serif;
+			}
+			.main div {
+				height: 300px;
+				display: flex;
+				display: -webkit-flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-evenly;
+			}
+			.main div button {
+				width: 100px;
+				height: 30px;
+				font-size: 14px;
+				line-height: 30px;
+				color: #fff;
+				background-color: #4caf50;
+				border: none;
+				border-radius: 3px;
+				cursor: pointer;
+			}
+			.main div button:first-child {
+				background-color: #409eff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="attr"><label for="">key: </label><input type="text" class="keyInput" /></div>
+		<div class="main">
+			<textarea name="" id="enc" cols="30" rows="10"></textarea>
+			<div>
+				<button id="encBtn">加密 &gt;</button>
+				<button id="decBtn">&lt; 解密</button>
+			</div>
+			<textarea name="" id="dec" cols="30" rows="10"></textarea>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="../js/Crypto/core.js"></script>
+		<script src="../js/Crypto/x64-core.js"></script>
+		<script src="../js/Crypto/enc-utf16.js"></script>
+		<script src="../js/Crypto/enc-base64.js"></script>
+		<script src="../js/Crypto/md5.js"></script>
+		<script src="../js/Crypto/sha1.js"></script>
+		<script src="../js/Crypto/sha256.js"></script>
+		<script src="../js/Crypto/sha512.js"></script>
+		<script src="../js/Crypto/sha3.js"></script>
+		<script src="../js/Crypto/hmac.js"></script>
+		<script src="../js/Crypto/pbkdf2.js"></script>
+		<script src="../js/Crypto/evpkdf.js"></script>
+		<script src="../js/Crypto/cipher-core.js"></script>
+		<script src="../js/Crypto/mode-cfb.js"></script>
+		<script src="../js/Crypto/mode-ctr.js"></script>
+		<script src="../js/Crypto/mode-ofb.js"></script>
+		<script src="../js/Crypto/mode-ecb.js"></script>
+		<script src="../js/Crypto/pad-ansix923.js"></script>
+		<script src="../js/Crypto/pad-iso10126.js"></script>
+		<script src="../js/Crypto/pad-zeropadding.js"></script>
+		<script src="../js/Crypto/pad-iso97971.js"></script>
+		<script src="../js/Crypto/pad-nopadding.js"></script>
+		<script src="../js/Crypto/rc4.js"></script>
+		<script src="../js/Crypto/rabbit.js"></script>
+		<script src="../js/Crypto/aes.js"></script>
+		<script src="../js/Crypto/tripledes.js"></script>
+		<script>
+			$(function () {
+				let words = 'hello world!'
+				let key = '1234567812345678'
+				$('#encBtn').on("click", function() {
+                    key = $('.keyInput').val();
+                    words = $('#enc').val();
+                    let res = encrypt(words, key)
+                    $('#dec').text(res)
+                })
+                $('#decBtn').on("click", function() {
+                    key = $('.keyInput').val();
+                    words = $('#dec').val();
+                    let res = decrypt(words, key)
+                    $('#enc').text(res)
+				})
+			})
+			function encrypt(words, key) {
+				// 加密
+				let encrypted = ''
+				encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(words), CryptoJS.enc.Utf8.parse(key), {
+					iv: CryptoJS.enc.Utf8.parse(key),
+					mode: CryptoJS.mode.CBC,
+					padding: CryptoJS.pad.Pkcs7,
+				})
+				return encrypted.ciphertext.toString()
+			}
+
+			function decrypt(words, key) {
+				// 解密
+				let decrypted = ''
+				decrypted = CryptoJS.AES.decrypt(CryptoJS.enc.Base64.stringify(CryptoJS.enc.Hex.parse(words)), CryptoJS.enc.Utf8.parse(key), {
+					iv: CryptoJS.enc.Utf8.parse(key),
+					mode: CryptoJS.mode.CBC,
+					padding: CryptoJS.pad.Pkcs7,
+				})
+				return decrypted.toString(CryptoJS.enc.Utf8)
+			}
+		</script>
+	</body>
+</html>
