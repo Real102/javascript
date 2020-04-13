@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    <title>deepClone</title>
+</head>
+<body>
+    <script>
+        window.onload = function() {
+            var obj = {
+                a: '1',
+                b: [2, 3, 5],
+                c: {
+                    d: 67
+                }
+            }
+            console.log(deepClone(obj))
+        }
+        function deepClone(obj) {
+            if (!obj && typeof obj != 'object') {
+                return 'error arguments'
+            }
+            var newObj = obj.constructor == Array ? [] : {}
+            Object.keys(obj).forEach(item => {
+                if(obj[item] && typeof obj[item] == 'object') {
+                    newObj[item] = deepClone(obj[item])
+                } else {
+                    newObj[item] = obj[item]
+                }
+            })
+            return newObj
+        }
+    </script>
+</body>
+</html>
