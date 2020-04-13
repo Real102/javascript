@@ -24,8 +24,8 @@ console.log('666')
 
 将数据以表格的形式打印出来，这个方法需要提供 data，并且这个 data 必须是数组或对象
 
-![输出为数组](/img/consoleTableArray.png "输出为数组的截图")
-![输出为对象](/img/consoleTableObject.png "输出为对象的截图")
+![输出为数组](/assets/img/consoleTableArray.png "输出为数组的截图")
+![输出为对象](/assets/img/consoleTableObject.png "输出为对象的截图")
 
 ## console.time & console.timeEnd
 

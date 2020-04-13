@@ -24,5 +24,5 @@ window.onkeydown = funtion(event) {
 
 附 keyCode 参照表
 
-![keyCode-1](/img/keyCode-1.png "keyCode参照表-1")
-![keyCode-2](/img/keyCode-2.png "keyCode参照表-2")
+![keyCode-1](/assets/img/keyCode-1.png "keyCode参照表-1")
+![keyCode-2](/assets/img/keyCode-2.png "keyCode参照表-2")

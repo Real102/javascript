@@ -90,32 +90,32 @@
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-		<script src="../js/Crypto/core.js"></script>
-		<script src="../js/Crypto/x64-core.js"></script>
-		<script src="../js/Crypto/enc-utf16.js"></script>
-		<script src="../js/Crypto/enc-base64.js"></script>
-		<script src="../js/Crypto/md5.js"></script>
-		<script src="../js/Crypto/sha1.js"></script>
-		<script src="../js/Crypto/sha256.js"></script>
-		<script src="../js/Crypto/sha512.js"></script>
-		<script src="../js/Crypto/sha3.js"></script>
-		<script src="../js/Crypto/hmac.js"></script>
-		<script src="../js/Crypto/pbkdf2.js"></script>
-		<script src="../js/Crypto/evpkdf.js"></script>
-		<script src="../js/Crypto/cipher-core.js"></script>
-		<script src="../js/Crypto/mode-cfb.js"></script>
-		<script src="../js/Crypto/mode-ctr.js"></script>
-		<script src="../js/Crypto/mode-ofb.js"></script>
-		<script src="../js/Crypto/mode-ecb.js"></script>
-		<script src="../js/Crypto/pad-ansix923.js"></script>
-		<script src="../js/Crypto/pad-iso10126.js"></script>
-		<script src="../js/Crypto/pad-zeropadding.js"></script>
-		<script src="../js/Crypto/pad-iso97971.js"></script>
-		<script src="../js/Crypto/pad-nopadding.js"></script>
-		<script src="../js/Crypto/rc4.js"></script>
-		<script src="../js/Crypto/rabbit.js"></script>
-		<script src="../js/Crypto/aes.js"></script>
-		<script src="../js/Crypto/tripledes.js"></script>
+		<script src="../../assets/js/Crypto/core.js"></script>
+		<script src="../../assets/js/Crypto/x64-core.js"></script>
+		<script src="../../assets/js/Crypto/enc-utf16.js"></script>
+		<script src="../../assets/js/Crypto/enc-base64.js"></script>
+		<script src="../../assets/js/Crypto/md5.js"></script>
+		<script src="../../assets/js/Crypto/sha1.js"></script>
+		<script src="../../assets/js/Crypto/sha256.js"></script>
+		<script src="../../assets/js/Crypto/sha512.js"></script>
+		<script src="../../assets/js/Crypto/sha3.js"></script>
+		<script src="../../assets/js/Crypto/hmac.js"></script>
+		<script src="../../assets/js/Crypto/pbkdf2.js"></script>
+		<script src="../../assets/js/Crypto/evpkdf.js"></script>
+		<script src="../../assets/js/Crypto/cipher-core.js"></script>
+		<script src="../../assets/js/Crypto/mode-cfb.js"></script>
+		<script src="../../assets/js/Crypto/mode-ctr.js"></script>
+		<script src="../../assets/js/Crypto/mode-ofb.js"></script>
+		<script src="../../assets/js/Crypto/mode-ecb.js"></script>
+		<script src="../../assets/js/Crypto/pad-ansix923.js"></script>
+		<script src="../../assets/js/Crypto/pad-iso10126.js"></script>
+		<script src="../../assets/js/Crypto/pad-zeropadding.js"></script>
+		<script src="../../assets/js/Crypto/pad-iso97971.js"></script>
+		<script src="../../assets/js/Crypto/pad-nopadding.js"></script>
+		<script src="../../assets/js/Crypto/rc4.js"></script>
+		<script src="../../assets/js/Crypto/rabbit.js"></script>
+		<script src="../../assets/js/Crypto/aes.js"></script>
+		<script src="../../assets/js/Crypto/tripledes.js"></script>
 		<script>
 			$(function () {
 				let words = 'hello world!'
@@ -124,13 +124,14 @@
                     key = $('.keyInput').val();
                     words = $('#enc').val();
                     let res = encrypt(words, key)
-                    $('#dec').text(res)
+                    $('#dec').val(res)
                 })
                 $('#decBtn').on("click", function() {
                     key = $('.keyInput').val();
                     words = $('#dec').val();
                     let res = decrypt(words, key)
-                    $('#enc').text(res)
+					console.log(key, words, res)
+                    $('#enc').val(res)
 				})
 			})
 			function encrypt(words, key) {
