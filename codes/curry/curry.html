@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>curry</title>
+	</head>
+	<body>
+		<script>
+			window.onload = function () {
+				var fn1 = function (a, b, c) {
+					return [a, b, c]
+				}
+				var fn = curry(fn1)
+				console.log(fn('a'))
+				// console.log(fn('a', 'b', 'c'))
+				// console.log(fn("a", "b")("c"))
+				// console.log(fn("a")("b")("c"))
+				// console.log(fn("a")("b", "c"))
+			}
+			function curry(fn, length) {
+				length = length || fn.length // 柯里化时已经存储fn的参数长度
+				var slice = Array.prototype.slice
+				return function () {
+					console.log('arguments.length: ' + arguments.length) // 这里arguments长度为什么是3
+					if (arguments.length < length) {
+						// 只要传入的参数小于实际fn所需的参数，就返回一个fn
+						var combined = [fn].concat(slice.call(arguments)) // 合并参数('a')('b') => [fn, 'a', 'b']，并存储
+						console.log('combined: ' + combined)
+						return curry(sub_curry.apply(this, combined), length - arguments.length) // 这里计算剩余参数长度
+					} else {
+						return fn.apply(this, arguments) // 这里返回fn，this改变指向
+					}
+				}
+			}
+			function sub_curry(fn) {
+				var args = Array.prototype.slice.call(arguments, 1) // 这里复制index>1的agrs
+				return function () {
+					return fn.apply(this, args.concat(Array.prototype.slice.call(arguments))) // 这里返回 fn(agrs) 函数
+				}
+			}
+			// 参考地址：https://github.com/mqyqingfeng/Blog/issues/42
+		</script>
+	</body>
+</html>
