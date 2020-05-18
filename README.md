@@ -1,3 +1,3 @@
 # javascript
 
-记录并学习 JavaScript
+用于存放测试代码
