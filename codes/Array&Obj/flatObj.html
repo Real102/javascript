@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    <title>对象扁平化</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+            let obj = {
+                a: {
+                    b: {
+                        c: {
+                            d: 'xxx'
+                        }
+                    },
+                    e: {
+                        f: 'yy',
+                        h: 'oo'
+                    },
+                    g: 'zz'
+                }
+            }
+            console.log(flatObj(obj))
+        }
+
+        function flatObj(obj, key = '', newObj = {}) {
+            if (!obj || typeof obj !== 'object') return 'unexpected input'
+            Object.keys(obj).forEach(item => {
+                if (obj[item] && typeof obj[item] === 'object') {
+                    flatObj(obj[item], key + item + '.', newObj)
+                } else {
+                    newObj[key + item] = obj[item]
+                }
+            })
+            return newObj
+        }
+    </script>
+</body>
+
+</html>

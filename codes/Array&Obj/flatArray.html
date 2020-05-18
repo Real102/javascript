@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    <title>数组扁平化</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+            var arr = [1, 2, [3, 4], [5, [6, 7, [8, [9, 10]]]]]
+            console.log(flatArr(arr))
+        }
+
+        function flatArr(arr) {
+            if (!arr || !Array.isArray(arr)) return 'unexpected input'
+            let newArr = []
+            arr.forEach(item => {
+                if (item && Array.isArray(item)) {
+                    newArr.push(...flatArr(item))
+                } else {
+                    newArr.push(item)
+                }
+            })
+            return newArr
+        }
+    </script>
+</body>
+
+</html>
