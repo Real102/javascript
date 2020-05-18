@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>居中的各种实现方案</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .left {
+        float: left;
+        width: 50%;
+        box-sizing: border-box;
+        border-right: 1px solid #cccccc;
+      }
+      .right {
+        float: right;
+        width: 50%;
+      }
+      h1 {
+        text-align: center;
+      }
+      .defaultP {
+        width: 500px;
+        height: 200px;
+        margin: 20px auto;
+        background-color: coral;
+        position: relative;
+      }
+      .defaultS {
+        width: 100px;
+        height: 50px;
+        background-color: darkgreen;
+      }
+      .left .son1 {
+        margin: 0 auto;
+      }
+      .left .son2 {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+      }
+      .left .parent3 {
+        display: flex;
+        justify-content: center;
+      }
+      .left .son4 {
+        margin-left: 50%;
+        transform: translate(-50%);
+      }
+      .right .parent1{
+        display: flex;
+        align-items: center;
+      }
+      .right .son2{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .right .son3{
+        position: absolute;  /*绝对定位且都为0*/
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto 0;
+      }
+      .right .parent4{
+        line-height: 200px;
+      }
+      .right .son4{
+        display: inline-block;  /*行内元素*/
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="left">
+      <h1>水平居中</h1>
+      <div class="parent1 defaultP">
+        <div class="son1 defaultS"></div>
+      </div>
+      <div class="parent2 defaultP">
+        <div class="son2 defaultS"></div>
+      </div>
+      <div class="parent3 defaultP">
+        <div class="son3 defaultS"></div>
+      </div>
+      <div class="parent4 defaultP">
+        <div class="son4 defaultS"></div>
+      </div>
+    </div>
+    <div class="right">
+      <h1>垂直居中</h1>
+      <div class="parent1 defaultP">
+        <div class="son1 defaultS"></div>
+      </div>
+      <div class="parent2 defaultP">
+        <div class="son2 defaultS"></div>
+      </div>
+      <div class="parent3 defaultP">
+        <div class="son3 defaultS"></div>
+      </div>
+      <div class="parent4 defaultP">
+        <div class="son4 defaultS"></div>
+      </div>
+    </div>
+  </body>
+</html>
