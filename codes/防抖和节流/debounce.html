@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body,
+            html {
+                font-size: 12px;
+                width: 100%;
+                overflow: hidden;
+            }
+            #container {
+                width: 100%;
+                height: 300px;
+                background-color: coral;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container"></div>
+        <script>
+            window.onload = function () {
+                let container = document.getElementById("container")
+                container.onmousemove = debounce(move, 1000, true)
+            }
+            function move(e) {
+                console.log(666)
+                console.log(this) // this指向container
+                console.log(e) // 默认会变成undefined，需要重新指定
+            }
+            function debounce(fn, wait, immediate) {
+                let timeout
+                return function () {
+                    let context = this // 获取this对象，用于重新指定
+                    let args = arguments // 获取arguments对象，也就是move的参数
+                    if (timeout) {
+                        clearTimeout(timeout) // 清除定时器之后，这个timeout仍然存在。以定时器ID形式存在
+                    } // 清除定时器
+                    if (immediate) {
+                        // 如果已经执行过，不再执行
+                        var callNow = !timeout // 获取当前定时器的状态
+                        timeout = setTimeout(function () {
+                            // wait时间后将定时器设置为null
+                            timeout = null
+                        }, wait)
+                        if (callNow) fn.apply(context, args) // 一开始没有执行时，timeout是null；只要未进入settimeout中，timeout就会一直是定时器ID，当设置成null时，callnow才会是true，也就才会执行
+                    } else {
+                        timeout = setTimeout(function () {
+                            // 重新开启定时器，若在1S内重复点几次，只会触发一次
+                            fn.apply(context, args)
+                        }, wait)
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

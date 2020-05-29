@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>最长不含重复字符的子字符串</title>
+    </head>
+    <body>
+        <script>
+            var lengthOfLongestSubstring = function (s) {
+                let dp = [] // 临时数组缓存遍历的数据
+                let arr = s.split("")
+                let res = 0 // 存储当前最大长度
+                for (let i = 0, len = arr.length; i < len; i++) {
+                    if (dp.indexOf(arr[i]) > -1) {
+                        // 当dp中已存在该字符串时如‘a’
+                        dp.splice(0, dp.indexOf(arr[i]) + 1) // 将‘a’之前包括a的所有字符串全部删除，然后再push，可以保证dp是永远不重复的
+                    }
+                    dp.push(arr[i])
+                    res = Math.max(res, dp.length)
+                }
+                return res
+            }
+            let str = "abcabcbb"
+            console.log(lengthOfLongestSubstring(str))
+        </script>
+    </body>
+</html>
