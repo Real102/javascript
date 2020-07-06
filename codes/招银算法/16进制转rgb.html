@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <span style="color: #abc; font-size: 30px;">颜色颜色</span>
+    <script>
+        window.onload = function () {
+            function hex2rgb(hex) {
+                if (!hex) return ''
+                let res = hex
+                let arr = []
+                let rgb1, rgb2, rgb3
+                if (hex.startsWith('#')) {
+                    let str = hex.substr(1)
+                    let len = str.length
+                    if (len === 3 || len === 6) {
+                        if (len === 3) {
+                            arr = str.split('')
+                            rgb1 = parseInt(arr[0] + arr[0], 16)
+                            rgb2 = parseInt(arr[1] + arr[1], 16)
+                            rgb3 = parseInt(arr[2] + arr[2], 16)
+                        } else {
+                            rgb1 = parseInt(str.substr(0, 2), 16)
+                            rgb2 = parseInt(str.substr(2, 2), 16)
+                            rgb3 = parseInt(str.substr(4, 2), 16)
+                        }
+                        if (!isNaN(rgb1) || !isNaN(rgb2) || !isNaN(rgb3)) {
+                            res = `rgb(${rgb1},${rgb2},${rgb3})`
+                        }
+                    }
+                }
+                return res
+            }
+            console.log(hex2rgb())
+        }
+    </script>
+</body>
+
+</html>
