@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>爬楼梯算法</title>
+    </head>
+    <body>
+        <script>
+            // 斐波那契算法，用数组缓存数据
+            var climbStairs = function (n) {
+                let len = n
+                let arr = new Array(len + 1)
+                arr.fill(0)
+                arr[0] = 1
+                arr[1] = 1
+                arr[2] = 2
+                if (len == 1) return 1
+                if (len == 2) return 2
+                for(let i = 3; i <= len; i++) {
+                    arr[i] = arr[i-1] + arr[i-2]
+                }
+                return arr[n]
+            }
+            console.log(climbStairs(6))
+        </script>
+    </body>
+</html>
