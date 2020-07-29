@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>margin垂直居中</title>
+    <style>
+        body, html{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .container{
+            width: 500px;
+            height: 500px;
+            border: 1px solid #ccc;
+            margin: auto;
+        }
+        .children{
+            width: 100px;
+            height: 200px;
+            margin: auto;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h3 style="margin: 30px;text-align: center;">maigin在默认情况下会使块级容器水平居中显示(原因如下)，当绝对定位情况下，还会垂直居中</h3>
+    <h3 style="margin: 50px;text-align: center;">【在默认情况下（非浮动、绝对定位等），水平方向会自动填满外部的容器】</h3>
+    <div class="container">
+        <div class="children"></div>
+    </div>
+</body>
+</html>
