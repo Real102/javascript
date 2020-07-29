@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document.domain解决跨域问题</title>
+        <style>
+            h3 {
+                text-align: center;
+            }
+            #iframe {
+                width: 800px;
+                height: 800px;
+                margin: 0 auto;
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>此方案仅限主域相同，子域不同的跨域应用场景；两个页面都通过js强制设置document.domain为基础主域，就实现了同域</h3>
+        <iframe
+            src="http://localhost:8080/#/"
+            frameborder="1"
+            id="iframe"
+        ></iframe>
+        <script>
+            document.domain = "domain.com"
+            var user = "admin"
+        </script>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>postmessage解决跨域问题</title>
+    <style>
+        h3{
+            text-align: center;
+        }
+        #iframe{
+            width: 800px;
+            height: 800px;
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h3>获取iframe对象，利用postmessage方法对目标域名发送数据，目标域名通过监听message方法可以获取数据</h3>
+    <iframe src="http://localhost:8080/#/" frameborder="1" id="iframe"></iframe>
+    <script>
+        window.onload = function() {
+            let myIframe = document.getElementById('iframe')
+            // console.log(myIframe.contentWindow) 直接输入iframe对象会报CORS跨域
+            myIframe.contentWindow.postMessage(JSON.stringify({name: 777}), 'http://localhost:8080/#/')
+        }
+
+        // 目标域名下需要设置：
+        // window.addEventListener('message', function(e) {
+        //     console.log(e.data)
+        // })
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>location.hash解决跨域问题</title>
+        <style>
+            h3 {
+                text-align: center;
+            }
+            #iframe {
+                width: 800px;
+                height: 800px;
+                margin: 0 auto;
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>利用iframe的location.hash传值，相同域之间直接js访问来通信。目标域通过监听onhashchange函数可以拿到hash值（不适合vue？）</h3>
+        <iframe
+            src="http://localhost:8080/#/"
+            frameborder="1"
+            id="iframe"
+        ></iframe>
+        <script>
+            window.onload = function() {
+                let myIframe = document.getElementById('iframe')
+                // myIframe.onload = function() {
+                    setTimeout(() => {
+                        myIframe.src = myIframe.src + '#user=admin'
+                    }, 1000);
+                // }
+            }
+        </script>
+    </body>
+</html>
