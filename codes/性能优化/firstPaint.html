@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script>
+            var first = new Date().getTime()
+            console.log(first)
+        </script>
+        <title>计算首屏时间</title>
+    </head>
+    <body>
+        <p>readyState</p>
+        <p>interactive状态===DOMContentLoaded</p>
+        <p>complete状态===onload</p>
+        <img src="http://10.32.65.120:8081/6,02103ad663a5" alt="" />
+        <img src="http://10.32.65.120:8081/2,020dc310d867" alt="" />
+        <img src="http://10.32.65.120:8081/3,0212d616fe8a" alt="" />
+        <img src="http://10.32.65.120:8081/1,02185715b1a5" alt="" />
+        <img src="../../assets/img/keyCode-1.png" alt="" />
+        <p>先搞点简单的来测试</p>
+        <script src="../js异步/async.js"></script>
+        <script>
+            console.log(
+                "navigationStart：" + performance.timing.navigationStart
+            )
+            document.addEventListener("DOMContentLoaded", function () {
+                console.log("DOMContentLoaded：" + new Date().getTime())
+            })
+            window.onload = function () {
+                console.log("onload：" + new Date().getTime())
+                console.log(performance.timing)
+            }
+        </script>
+    </body>
+</html>
