@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>匹配符号问题</title>
+    </head>
+    <body>
+        <script>
+            var isValid = function (s) {
+                var stack = []
+                var map = {
+                    "(": ")",
+                    "[": "]",
+                    "{": "}",
+                }
+
+                for (var char of s) {   // 遍历s
+                    if (char in map) {  // 判断map中是否存在
+                        stack.push(char)        // 存在会推入栈
+                    } else {
+                        // 如果不存在，即当遇到')'、']'、'}'时，判断stack栈的最后一个字符是否为相匹配的'('
+                        if (!stack.length || char != map[stack.pop()]) {
+                            // 如果不匹配则直接返回false
+                            return false
+                        }
+                        // 匹配则进入下一个循环
+                    }
+                }
+                return !stack.length
+            }
+            console.log(isValid('(())()((((()))))'))
+        </script>
+    </body>
+</html>
