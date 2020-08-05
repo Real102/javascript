@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>工厂模式创建对象</title>
+    </head>
+    <body>
+        <script>
+            window.onload = function () {
+                function createPerson(name) {
+                    var o = new Object()
+                    o.name = name
+                    o.getName = function () {
+                        console.log(this.name)
+                    }
+
+                    return o
+                }
+
+                var person1 = createPerson("kevin")
+                var person2 = createPerson("Jelee")
+                person1.getName()
+                person2.getName()
+                console.log(person1)
+                console.log(person2)
+
+                console.log('缺点：对象无法识别，因为所有的实例都指向一个原型（object）')
+            }
+        </script>
+    </body>
+</html>
