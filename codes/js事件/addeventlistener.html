@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>usecapture</title>
+        <style>
+            div{
+                text-align: center;
+            }
+            h2{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h2>currentTarget在浏览器console中没有显示（显示为null）但实际可以输出来</h2>
+            <h2>currentTarget是事件的绑定者</h2>
+            <h2>target、srcElement是事件的发生者</h2>
+
+            <h2>IE9以下只支持事件冒泡（bubbling）</h2>
+        </div>
+        <div id="parent">
+            <button id="target" style="padding: 1em 0.8em">
+                Trigger event
+            </button>
+        </div>
+
+        <script>
+            var parent = document.getElementById("parent"),
+                target = document.getElementById("target")
+
+            // target.addEventListener(
+            //     "click",
+            //     function (e) {
+            //         console.log("Target Bubble 1")
+            //         console.log(e.currentTarget)
+            //         console.log(e.target)
+            //         // e.stopPropagation();
+            //     },
+            //     false
+            // )
+
+            // target.addEventListener(
+            //     "click",
+            //     function (e) {
+            //         console.log("Target Capture")
+            //         console.log(e.currentTarget)
+            //         console.log(e.target)
+            //         // e.stopPropagation();
+            //     },
+            //     true
+            // )
+
+            // target.addEventListener(
+            //     "click",
+            //     function (e) {
+            //         console.log("Target Bubble 2")
+            //         // console.log(e)
+            //         console.log(e.currentTarget)
+            //         console.log(e.target)
+            //         // e.stopPropagation();
+            //     },
+            //     false
+            // )
+
+            parent.addEventListener(
+                "click",
+                function (e) {
+                    console.log("Parent Capture")
+                    // console.log(e)
+                    console.log(e.currentTarget)
+                    console.log(e.target)
+                    // e.stopPropagation();
+                },
+                true
+            )
+
+            parent.addEventListener(
+                "click",
+                function (e) {
+                    console.log("Parent Bubble")
+                    console.log(e.currentTarget)
+                    console.log(e.target)
+                    // e.stopPropagation();
+                },
+                false
+            )
+        </script>
+    </body>
+</html>

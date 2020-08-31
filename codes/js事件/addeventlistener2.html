@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>usecapture</title>
+        <style>
+            ul {
+                width: 1000px;
+                border: 1px solid coral;
+            }
+            li {
+                width: 400px;
+                height: 50px;
+                border: 1px solid red;
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="oul">
+            <li>
+                <button onclick="handlerClick()">点我</button>
+            </li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <script>
+            const oul = document.getElementById("oul")
+            const oli = oul.getElementsByTagName("li")
+
+            oul.addEventListener(
+                "click",
+                function (e) {
+                    console.log("true")
+                    console.log(e || window.event)
+                },
+                true
+            )
+            oul.addEventListener(
+                "click",
+                function (e) {
+                    console.log("false")
+                    console.log(e || window.event)
+                },
+                false
+            )
+            function handlerClick(e) {
+                console.log("button")
+                console.log(e || window.event)
+            }
+        </script>
+    </body>
+</html>
