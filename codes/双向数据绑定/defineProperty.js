@@ -8,7 +8,7 @@ for (let i in obj) {
     if (obj.hasOwnProperty(i)) {
         Object.defineProperty(obj, i, {
             get: function() {
-                console.log(`正在获取数据：${i}`)
+                console.log(`正在获取${i}的数据`)
             },
             set: v => {
                 console.log(`将${i}赋值为：${v}`)
@@ -18,3 +18,4 @@ for (let i in obj) {
 }
 
 obj.name = '宵夜时间到了'
+obj.name
