@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // xhr1
+            var xhr = new XMLHttpRequest()
+            xhr.open("get", "/dev-api/intf/listData", false)
+            xhr.send()
+            xhr.onreadystatechange = function () {
+                if (xhr.status === 200 && xhr.readyState === 4) {
+                    console.log(xhr.responseText)
+                }
+            }
+
+            // xhr2
+            function sendRequest(method, url, data, async = true) {
+                return new Promise((resolve, reject) => {
+                    var xhr = new XMLHttpRequest()
+                    xhr.open(method, url, async)
+                    if (method == "post") {
+                        xhr.setRequestHeader("application/json")
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>
