@@ -1,14 +1,14 @@
 const myPromise = Promise.resolve(Promise.resolve('Promise!'))
 
 function funcOne() {
-    myPromise.then(res => res).then(res => console.log(res));
+    myPromise.then((res) => res).then((res) => console.log(res))
     setTimeout(() => console.log('TimeOut!'), 0)
     console.log('Last Line!')
 }
 
 async function funcTwo() {
     const res = await myPromise //Promise.resolve(Promise) 会原封不动的返回该实例
-    console.log(await res)  //Promise.resolve('string') == p.then(s => console.log(s))
+    console.log(await res) //Promise.resolve('string') == p.then(s => console.log(s))
     setTimeout(() => console.log('TimeOut!'), 0)
     console.log('Last Line!')
 }
@@ -30,3 +30,46 @@ funcTwo()
 // 第十次所有代码执行完毕
 
 // 可参考地址：https://es6.ruanyifeng.com/#docs/promise#Promise-resolve
+
+// 测试测试
+async function f() {
+    throw new Error('出错了')
+}
+
+f().then(
+    (v) => console.log('resolve', v),
+    (e) => console.log('reject', e)
+)
+
+// 测试测试
+Promise.resolve('666').then((res) => console.log(res))
+Promise.reject('nice')
+    .then((res) => {
+        console.log(res)
+    })
+    .catch((error) => {
+        console.log('error:' + error)
+    })
+
+// 测试测试
+const promise = Promise.resolve('Promise!')
+async function testAsync() {
+    let p1 = await async1() // 若异步则跳过，同步则执行；若async1是promise，则会等resolve后才进入下一个await
+    let p2 = await async2()
+    return 'async end'
+}
+function async1() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('async1')
+            resolve()
+        }, 0)
+    })
+}
+function async2() {
+    console.log(promise)
+}
+
+testAsync().then((res) => {
+    console.log(res)
+})
