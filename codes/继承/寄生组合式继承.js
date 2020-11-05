@@ -63,33 +63,33 @@
 // sub2.getName()
 
 // 寄生式继承
-// function SuperType(name) {
-//     this.name = name
-//     this.arr = [1, 2, 3, 4]
-// }
+function SuperType(name) {
+    this.name = name
+    this.arr = [1, 2, 3, 4]
+}
 
-// SuperType.prototype.getName = function() {
-//     console.log(this.name)
-// }
+SuperType.prototype.getName = function() {
+    console.log(this.name)
+}
 
-// function SubType(age, name) {
-//     this.age = age
-//     SuperType.call(this, name)
-// }
+function SubType(age, name) {
+    this.age = age
+    SuperType.call(this, name)
+}
 
-// inherite(SubType, SuperType)
-// function inherite(SubType, SuperType) {
-//     let prototype = Object.create(SuperType.prototype)
-//     prototype.constructor = SubType
-//     SubType.prototype = prototype
-// }
+inherite(SubType, SuperType)
+function inherite(SubType, SuperType) {
+    let prototype = Object.create(SuperType.prototype)
+    prototype.constructor = SubType
+    SubType.prototype = prototype
+}
 
-// let sub1 = new SubType(12, '张三')
-// let sub2 = new SubType(13, '李四')
-// sub1.arr.push(5)
-// console.log(sub1)
-// console.log(sub2)
-// sub1.getName()
-// sub2.getName()
-// console.log(sub1.__proto__)
-// console.log(sub1.__proto__.constructor)
+let sub1 = new SubType(12, '张三')
+let sub2 = new SubType(13, '李四')
+sub1.arr.push(5)
+console.log(sub1)
+console.log(sub2)
+sub1.getName()
+sub2.getName()
+console.log(sub1.__proto__)
+console.log(sub1.__proto__.constructor)
