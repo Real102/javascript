@@ -1,7 +1,7 @@
 const myPromise = Promise.resolve(Promise.resolve('Promise!'))
 
 function funcOne() {
-    myPromise.then((res) => res).then((res) => console.log(res))
+    myPromise.then(res => res).then(res => console.log(res))
     setTimeout(() => console.log('TimeOut!'), 0)
     console.log('Last Line!')
 }
@@ -37,17 +37,17 @@ async function f() {
 }
 
 f().then(
-    (v) => console.log('resolve', v),
-    (e) => console.log('reject', e)
+    v => console.log('resolve', v),
+    e => console.log('reject', e)
 )
 
 // 测试测试
-Promise.resolve('666').then((res) => console.log(res))
+Promise.resolve('666').then(res => console.log(res))
 Promise.reject('nice')
-    .then((res) => {
+    .then(res => {
         console.log(res)
     })
-    .catch((error) => {
+    .catch(error => {
         console.log('error:' + error)
     })
 
@@ -70,6 +70,77 @@ function async2() {
     console.log(promise)
 }
 
-testAsync().then((res) => {
+testAsync().then(res => {
     console.log(res)
 })
+
+// 测试---可以用作sleep函数，延迟**秒后执行
+function sleep(time) {
+    return new Promise(res => setTimeout(res, time))
+}
+
+sleep(2000).then(() => console.log('2000ms'))
+
+// 测试代码
+// 三个状态：PENDING、FULFILLED、REJECTED
+const PENDING = 'PENDING'
+const FULFILLED = 'FULFILLED'
+const REJECTED = 'REJECTED'
+
+class MPromise {
+    constructor(executor) {
+        // 默认状态为 PENDING
+        this.status = PENDING
+        // 存放成功状态的值，默认为 undefined
+        this.value = undefined
+        // 存放失败状态的值，默认为 undefined
+        this.reason = undefined
+
+        // 调用此方法就是成功
+        let resolve = value => {
+            // 状态为 PENDING 时才可以更新状态，防止 executor 中调用了两次 resovle/reject 方法
+            if (this.status === PENDING) {
+                this.status = FULFILLED
+                this.value = value
+            }
+        }
+
+        // 调用此方法就是失败
+        let reject = reason => {
+            // 状态为 PENDING 时才可以更新状态，防止 executor 中调用了两次 resovle/reject 方法
+            if (this.status === PENDING) {
+                this.status = REJECTED
+                this.reason = reason
+            }
+        }
+
+        try {
+            // 立即执行，将 resolve 和 reject 函数传给使用者
+            executor(resolve, reject)
+        } catch (error) {
+            // 发生异常时执行失败逻辑
+            reject(error)
+        }
+    }
+
+    // 包含一个 then 方法，并接收两个参数 onFulfilled、onRejected
+    then(onFulfilled, onRejected) {
+        if (this.status === FULFILLED) {
+            onFulfilled(this.value)
+        }
+
+        if (this.status === REJECTED) {
+            onRejected(this.reason)
+        }
+    }
+}
+const promise = new MPromise((resolve, reject) => {
+    resolve('成功')
+}).then(
+    data => {
+        console.log('success', data)
+    },
+    err => {
+        console.log('faild', err)
+    }
+)

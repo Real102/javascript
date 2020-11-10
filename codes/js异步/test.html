@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            class MPromise {
+                constructor(excutor) {
+                    this.status = 'pending'
+                    this.value = undefined
+                    this.reason = undefined
+                    this.onResolveCallback = []
+                    this.onRejectCallback = []
+
+                    const resolve = value => {
+                        if (this.status === 'pending') {
+                            this.status = 'fulfilled'
+                            this.value = value
+                            this.onResolveCallback.forEach(fn => fn())
+                        }
+                    }
+                    const reject = reason => {
+                        if (this.status === 'pending') {
+                            this.status = 'rejected'
+                            this.reason = reason
+                            this.onRejectCallback.forEach(fn => fn())
+                        }
+                    }
+
+                    try {
+                        excutor(resolve, reject)
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+
+                then(onFulfill, onReject) {
+                    if (this.status === 'fulfilled') {
+                        onFulfill(this.value)
+                    }
+
+                    if (this.status === 'rejected') {
+                        onReject(this.reason)
+                    }
+
+                    // 当状态还没改变时，代表promise内部是异步，因此需要等状态变成fulfilled或rejected再执行
+                    if (this.status === 'pending') {
+                        this.onResolveCallback.push(() => {
+                            onFulfill(this.value)
+                        })
+                        this.onRejectCallback.push(() => {
+                            onReject(this.reason)
+                        })
+                    }
+                }
+            }
+
+            var promise = new MPromise((resolve, reject) => {
+                resolve('123')
+            }).then(
+                data => {
+                    console.log('success：', data)
+                },
+                err => {
+                    console.log('faild：', err)
+                }
+            )
+        </script>
+    </body>
+</html>
